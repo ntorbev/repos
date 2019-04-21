@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:server": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -21,12 +22,13 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@clr/angular": "^0.13.11",
-    "core-js": "^2.5.4",
-    "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26",
-    "@clr/ui": "^0.13.11",
     "@clr/icons": "^0.13.11",
-    "@webcomponents/custom-elements": "^1.0.0"
+    "@clr/ui": "^0.13.11",
+    "@webcomponents/custom-elements": "^1.0.0",
+    "core-js": "^2.5.4",
+    "express": "^4.16.4",
+    "rxjs": "~6.2.0",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
@@ -44,6 +46,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.18.11",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
