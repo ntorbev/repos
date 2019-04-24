@@ -1,5 +1,28 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const reposRoutes = require("./routes/repos");
+const userRoutes = require("./routes/user");
+
 const app = express();
+
+mongoose.connect(
+  'mongodb+srv://ntorbev:17Zq8TimCRDCbblm@cluster0-7mibb.mongodb.net/test',
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  }
+)
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -13,5 +36,6 @@ app.use((req, res, next) => {
   );
   next();
 });
-
+app.use("/api/repos", reposRoutes);
+app.use("/api/user", userRoutes);
 module.exports = app;

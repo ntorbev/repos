@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" (submit)="onLogin(loginForm)" #loginForm="ngForm" >
     <section class="title">
       <h3 class="welcome">Login</h3>
 <!--      Company Product Name-->

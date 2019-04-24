@@ -1,0 +1,17 @@
+<div>
+<span>
+    <a routerLink="/">MyRepos</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="!userIsAuthenticated">
+      <a routerLink="/auth/login">Login</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a routerLink="/auth/signup">Signup</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</div>
