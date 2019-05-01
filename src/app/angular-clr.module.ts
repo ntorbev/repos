@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ClarityModule, ClrCheckboxModule, ClrInputModule, ClrPasswordModule, ClrSelectModule} from '@clr/angular';
+import {ClarityModule, ClrCheckboxModule, ClrDatagridModule, ClrInputModule, ClrPasswordModule, ClrSelectModule} from '@clr/angular';
 
 
 @NgModule({
@@ -9,13 +9,15 @@ import {ClarityModule, ClrCheckboxModule, ClrInputModule, ClrPasswordModule, Clr
     ClrInputModule,
     ClrPasswordModule,
     ClrCheckboxModule,
+    ClrDatagridModule
   ],
   exports: [
     ClarityModule,
     ClrSelectModule,
     ClrInputModule,
     ClrPasswordModule,
-    ClrCheckboxModule
+    ClrCheckboxModule,
+    ClrDatagridModule
   ]
 })
 export class AngularClrModule {

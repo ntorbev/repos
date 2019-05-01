@@ -1,3 +1,25 @@
-<p>
-  git-repos works!
-</p>
+<clr-datagrid>
+  <clr-dg-column>
+    <clr-dg-string-filter [clrDgStringFilter]="reposFilter"></clr-dg-string-filter>
+    Name
+  </clr-dg-column>
+  <clr-dg-column>TotalCount</clr-dg-column>
+  <clr-dg-column>Message</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let repo of repos">
+    <clr-dg-cell>
+      <a [routerLink]="['repos/details']" [queryParams]="{selectedRepo:repo.node.name}">{{repo.node.name}}</a>
+    </clr-dg-cell>
+    <clr-dg-cell>{{repo.node.defaultBranchRef.target.history.totalCount}}</clr-dg-cell>
+    <clr-dg-cell>{{repo.node.defaultBranchRef.target.history.edges[1].node.message}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <!--      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>-->
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+<router-outlet></router-outlet>

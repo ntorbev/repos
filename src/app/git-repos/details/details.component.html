@@ -1,0 +1,29 @@
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink id="link1">General Info</button>
+    <clr-tab-content id="content1" *clrIfActive>
+      <div>{{readme}}</div>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Commits</button>
+    <clr-tab-content *clrIfActive="true">
+      <clr-datagrid>
+        <clr-dg-column>
+          <clr-dg-string-filter [clrDgStringFilter]="reposFilter"></clr-dg-string-filter>
+          Name
+        </clr-dg-column>
+        <clr-dg-column>TotalCount</clr-dg-column>
+        <clr-dg-column>Message</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let commit of commits">
+          <clr-dg-cell>
+            <a >{{commit}}</a>
+          </clr-dg-cell>
+          <clr-dg-cell>{{commit.node.message}}</clr-dg-cell>
+          <clr-dg-cell>{{commit.node.message}}</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>
