@@ -17,7 +17,7 @@ class ReposFilter implements ClrDatagridStringFilterInterface<Repos> {
   styleUrls: ['./git-repos.component.css']
 })
 export class GitReposComponent implements OnInit {
-  reposPerPage = 2;
+  reposPerPage = 5;
   currentPage = 1;
   userId: string;
   private reposFilter = new ReposFilter();

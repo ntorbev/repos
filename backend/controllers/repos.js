@@ -1,12 +1,14 @@
 const axios = require('axios');
 const githubUrl = 'https://api.github.com/graphql';
-const token = '1f4473760e373792d2eaff1e047eae50e7009e63';
+const token = '008efe62717aa4ce255700a67b1e8310dba4d9d8';
 const oauth = {Authorization: 'bearer ' + token};
 exports.getRepos = (req, res, next) => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
   const query = '{' +
     'repositoryOwner(login: "ntorbev") { ' +
     '... on User {' +
-    'pinnedRepositories(first: 2) {' +
+    `pinnedRepositories(first: ${pageSize}) {` +
     'edges {' +
     'node {' +
     'name,' +
@@ -38,8 +40,6 @@ exports.getRepos = (req, res, next) => {
     '}' +
     '}';
 
-  const pageSize = +req.query.pagesize;
-  const currentPage = +req.query.page;
   let fetchedRepos;
 
   axios.post(githubUrl, {query}, {headers: oauth})

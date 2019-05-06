@@ -1,14 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {ClrDatagridStringFilterInterface} from '@clr/angular';
 import {Repos} from 'src/app/git-repos/git-repos.model';
 import {GitReposService} from 'src/app/git-repos/git-repos.service';
 
+class ReposFilter implements ClrDatagridStringFilterInterface<Repos> {
+  accepts(user: Repos, search: string): boolean {
+    return '' + user.node.message === search || user.node.message.toLowerCase().includes(search);
+  }
+}
 @Component({
   selector: 'rps-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
+  reposFilter = new ReposFilter();
   private repo: any;
   private readme: string;
   private commits: Repos[];

@@ -36,11 +36,11 @@ export class GitReposService {
           };
         })
       )
-      .subscribe(transformedPostData => {
-        this.repos = transformedPostData.repos;
+      .subscribe(transformedReposData => {
+        this.repos = transformedReposData.repos;
         this.repos$.next({
           repos: [...this.repos],
-          reposCount: transformedPostData.maxRepos
+          reposCount: transformedReposData.maxRepos
         });
       });
   }

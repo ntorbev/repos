@@ -1,23 +1,24 @@
 import {NgModule} from '@angular/core';
-import {ClarityModule, ClrCheckboxModule, ClrDatagridModule, ClrInputModule, ClrPasswordModule, ClrSelectModule} from '@clr/angular';
+import {
+  ClarityModule,
+  ClrCheckboxModule,
+  ClrDatagridModule,
+  ClrInputModule,
+  ClrModalModule,
+  ClrPasswordModule,
+  ClrSelectModule
+} from '@clr/angular';
 
 
 @NgModule({
-  imports: [
-    ClarityModule,
-    ClrSelectModule,
-    ClrInputModule,
-    ClrPasswordModule,
-    ClrCheckboxModule,
-    ClrDatagridModule
-  ],
   exports: [
     ClarityModule,
     ClrSelectModule,
     ClrInputModule,
     ClrPasswordModule,
     ClrCheckboxModule,
-    ClrDatagridModule
+    ClrDatagridModule,
+    ClrModalModule
   ]
 })
 export class AngularClrModule {

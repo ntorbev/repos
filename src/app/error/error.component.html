@@ -1,0 +1,11 @@
+<clr-modal [(clrModalOpen)]="closable" [clrModalClosable]="false">
+  <h3 class="modal-title">Error</h3>
+  <div class="modal-body">
+    <p>{{closable}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="closeModal()">
+      Let try again!
+    </button>
+  </div>
+</clr-modal>
