@@ -8,7 +8,7 @@ const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose.connect(
-  'mongodb+srv://ntorbev:17Zq8TimCRDCbblm@cluster0-7mibb.mongodb.net/test',
+  'mongodb+srv://ntorbev:17Zq8TimCRDCbblm@cluster0-7mibb.mongodb.net/repos',
   {
     useNewUrlParser: true,
     useCreateIndex: true,
