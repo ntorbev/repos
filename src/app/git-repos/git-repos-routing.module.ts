@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {DetailsComponent} from 'src/app/git-repos/details/details.component';
-import {ReposDetailsResolver} from 'src/app/git-repos/repos-details.resolver';
+import { DetailsComponent } from './details/details.component';
+import { ReposDetailsResolver } from './repos-details.resolver';
 
 const routes: Routes = [
   {

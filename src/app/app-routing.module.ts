@@ -1,8 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from 'src/app/auth/auth.guard';
-import {ErrorComponent} from 'src/app/error/error.component';
-import {GitReposComponent} from 'src/app/git-repos/git-repos.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './auth/auth.guard';
+import { ErrorComponent } from './error/error.component';
+import { GitReposComponent } from './git-repos/git-repos.component';
 
 const routes: Routes = [
   {path: '', component: GitReposComponent, canActivate: [AuthGuard]},

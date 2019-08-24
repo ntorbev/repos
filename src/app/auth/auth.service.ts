@@ -1,23 +1,24 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
-import {environment} from '../../environments/environment';
-import {AuthData} from './auth-data.model';
+import { environment } from '../../environments/environment';
+import { AuthData } from './auth-data.model';
 
-const BACKEND_URL = environment.apiUrl + '/user/';
+const BACKEND_URL = environment.apiUrl + '/auth/';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+  error: string;
   private isAuthenticated = false;
   private token: string;
   private tokenTimer: any;
   private userId: string;
   private authStatusListener = new Subject<boolean>();
-  error: string;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   getToken() {
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   createUser(authData: AuthData) {
-    this.http.post(BACKEND_URL + '/signup', authData).subscribe(
+    this.http.post(BACKEND_URL + 'signup', authData).subscribe(
       () => {
         this.router.navigate(['/']);
       },
@@ -49,13 +50,10 @@ export class AuthService {
 
   login(authData: AuthData) {
     this.http
-      .post<{ token: string; expiresIn: number; userId: string }>(
-        BACKEND_URL + '/login',
-        authData
-      )
+      .post<any>(BACKEND_URL + 'login', authData)
       .subscribe(
         response => {
-          const token = response.token;
+          const token = response.accessToken;
           this.token = token;
           if (token) {
             const expiresInDuration = response.expiresIn;
@@ -112,28 +110,32 @@ export class AuthService {
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('token.dto.ts', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
     localStorage.setItem('userId', userId);
   }
 
   private clearAuthData() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiration');
-    localStorage.removeItem('userId');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token.dto.ts');
+      localStorage.removeItem('expiration');
+      localStorage.removeItem('userId');
+    }
   }
 
   private getAuthData() {
-    const token = localStorage.getItem('token');
-    const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
-    if (!token || !expirationDate) {
-      return;
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token.dto.ts');
+      const expirationDate = localStorage.getItem('expiration');
+      const userId = localStorage.getItem('userId');
+      if (!token || !expirationDate) {
+        return;
+      }
+      return {
+        token: token,
+        expirationDate: new Date(expirationDate),
+        userId: userId
+      };
     }
-    return {
-      token: token,
-      expirationDate: new Date(expirationDate),
-      userId: userId
-    };
   }
 }

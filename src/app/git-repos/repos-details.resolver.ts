@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {forkJoin, Observable} from 'rxjs';
-import {GitReposService} from 'src/app/git-repos/git-repos.service';
+import {GitReposService} from './git-repos.service';
 
 @Injectable({
   providedIn: 'root'

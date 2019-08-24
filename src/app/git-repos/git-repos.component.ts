@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ClrDatagridStringFilterInterface} from '@clr/angular';
 import {Subscription} from 'rxjs';
-import {AuthService} from 'src/app/auth/auth.service';
-import {Repos} from 'src/app/git-repos/git-repos.model';
-import {GitReposService} from 'src/app/git-repos/git-repos.service';
+
+import { AuthService } from '../auth/auth.service';
+import { Repos } from './git-repos.model';
+import { GitReposService } from './git-repos.service';
 
 class ReposFilter implements ClrDatagridStringFilterInterface<Repos> {
   accepts(repos: Repos, search: string): boolean {
@@ -20,9 +21,9 @@ export class GitReposComponent implements OnInit {
   reposPerPage = 5;
   currentPage = 1;
   userId: string;
-  private reposFilter = new ReposFilter();
+  reposFilter = new ReposFilter();
+  repos: any[];
   private reposSub: Subscription;
-  private repos: Repos[];
   private totalRepos: number;
 
   constructor(private gitReposService: GitReposService, private authService: AuthService) {

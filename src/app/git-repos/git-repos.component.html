@@ -8,10 +8,10 @@
 
   <clr-dg-row *clrDgItems="let repo of repos">
     <clr-dg-cell>
-      <a [routerLink]="['repos/details']" [queryParams]="{selectedRepo:repo.node.name}">{{repo.node.name}}</a>
+      <a [routerLink]="['repos/details']" [queryParams]="{selectedRepo:repo.name}">{{repo.name}}</a>
     </clr-dg-cell>
-    <clr-dg-cell>{{repo.node.defaultBranchRef.target.history.totalCount}}</clr-dg-cell>
-    <clr-dg-cell>{{repo.node.defaultBranchRef.target.history.edges[1].node.message}}</clr-dg-cell>
+    <clr-dg-cell>{{repo.created_at}}</clr-dg-cell>
+    <clr-dg-cell>{{repo.owner.login}}</clr-dg-cell>
   </clr-dg-row>
 
   <clr-dg-footer>

@@ -5,13 +5,13 @@ import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 import {environment} from '../../environments/environment';
-import {Repos} from 'src/app/git-repos/git-repos.model';
+import { Repos } from './git-repos.model';
 
 const BACKEND_URL = environment.apiUrl + '/repos/';
 
 @Injectable({providedIn: 'root'})
 export class GitReposService {
-  repos: Repos[] = [];
+  repos: [] = [];
   private repos$ = new Subject<{ repos: Repos[]; reposCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) {
@@ -27,12 +27,12 @@ export class GitReposService {
 
   getRepos(reposPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${reposPerPage}&page=${currentPage}`;
-    this.http.get<{ repos: any; maxRepos: number }>(BACKEND_URL + queryParams)
+    this.http.get<any>(BACKEND_URL + queryParams)
       .pipe(
         map(reposData => {
           return {
-            repos: reposData.repos,
-            maxRepos: reposData.maxRepos
+            repos: reposData,
+            maxRepos: reposData.length
           };
         })
       )

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ClrDatagridStringFilterInterface} from '@clr/angular';
-import {Repos} from 'src/app/git-repos/git-repos.model';
-import {GitReposService} from 'src/app/git-repos/git-repos.service';
+import { Repos } from '../git-repos.model';
+import { GitReposService } from '../git-repos.service';
+
 
 class ReposFilter implements ClrDatagridStringFilterInterface<Repos> {
   accepts(user: Repos, search: string): boolean {
