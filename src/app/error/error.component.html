@@ -1,11 +1,7 @@
-<clr-modal [(clrModalOpen)]="closable" [clrModalClosable]="false">
-  <h3 class="modal-title">Error</h3>
-  <div class="modal-body">
-    <p>{{closable}}</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="closeModal()">
-      Let try again!
-    </button>
-  </div>
-</clr-modal>
+<h1 mat-dialog-title>An Error Occurred!</h1>
+<div mat-dialog-content>
+  <p class="mat-body-1">{{ data?.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Okay</button>
+</div>

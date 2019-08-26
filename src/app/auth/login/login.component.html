@@ -1,32 +1,15 @@
-<div class="login-wrapper">
-  <form class="login" (submit)="onLogin(loginForm)" #loginForm="ngForm" >
-    <section class="title">
-      <h3 class="welcome">Login</h3>
-<!--      Company Product Name-->
-<!--      <h5 class="hint">Use your Company ID to sign in or create one now</h5>-->
-    </section>
-    <div class="login-group">
-<!--      <clr-select-container>-->
-<!--        <select clrSelect name="type" [(ngModel)]="form.type">-->
-<!--          <option value="local">Local Users</option>-->
-<!--          <option value="admin">Administrator</option>-->
-<!--        </select>-->
-<!--      </clr-select-container>-->
-      <clr-input-container>
-        <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="form.username"/>
-      </clr-input-container>
-      <clr-password-container>
-        <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="form.password"/>
-      </clr-password-container>
-<!--      <clr-checkbox-wrapper>-->
-<!--        <label>Remember me</label>-->
-<!--        <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>-->
-<!--      </clr-checkbox-wrapper>-->
-<!--      <div class="error active">-->
-<!--        Invalid user name or password-->
-<!--      </div>-->
-      <button type="submit" class="btn btn-primary">LOGIN</button>
-<!--      <a href="javascript://" class="signup">Sign up for a Company ID</a>-->
-    </div>
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form class="login" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+
+    <mat-form-field>
+      <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Login</button>
   </form>
-</div>
+</mat-card>

@@ -1,6 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -8,21 +7,8 @@ import { AuthService } from '../auth/auth.service';
   selector: 'rps-app-error',
   styleUrls: ['./error.component.css']
 })
-export class ErrorComponent implements OnInit, OnDestroy {
-  closable: any ;
-  constructor(private router: Router, private authService: AuthService) {
-  }
+export class ErrorComponent {
 
-  ngOnDestroy() {
-    // this.errorSub.unsubscribe();
-  }
-
-  closeModal() {
-    this.closable = false;
-    this.router.navigate(['/auth']);
-  }
-
-  ngOnInit(): void {
-    this.closable = this.authService.error;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { message: string }) {
   }
 }
