@@ -1,5 +1,14 @@
 # Repos
 
+1 cd server
+
+2 docker-compose up
+
+3 cd ../
+
+4 npm run serve
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.8.
 
 ## Development server
